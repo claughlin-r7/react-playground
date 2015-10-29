@@ -1,0 +1,29 @@
+# Emacs temporary files
+*~
+\#*
+*\#
+
+# Bower
+public/vendor
+
+# Node
+node_modules
+npm-debug.log
+
+# Dependencies
+bower_components
+
+# Sass
+.sass-cache
+
+# Webstorm/intellij files
+.idea
+
+# Other
+nohup.out
+
+# IDE settings
+.idea
+
+# Built files
+dist

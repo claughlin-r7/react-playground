@@ -1,0 +1,17 @@
+{
+  "name": "react-alt-starter",
+  "version": "0.0.1",
+  "description": "Starter kit for ReactJS applications using Alt flux",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "react",
+    "alt",
+    "webpack",
+    "es6"
+  ],
+  "author": "Chris Laughlin <chris_laughlin@rapid7.com>",
+  "license": "ISC"
+}
