@@ -9,8 +9,7 @@ module.exports = {
     target: 'web',
     cache: true,
     entry: {
-        module: path.join(srcPath, 'module.js'),
-        common: ['react', 'react-router', 'alt']
+        main: './src/module'
     },
     resolve: {
         root: srcPath,
@@ -18,13 +17,13 @@ module.exports = {
         modulesDirectories: ['node_modules', 'src']
     },
     output: {
-        path: path.join(__dirname, 'tmp'),
-        publicPath: '',
-        filename: '[name].js',
-        library: ['Example', '[name]'],
-        pathInfo: true
+        chunkFilename:"[chunkhash].example.min.js",
+        filename: "example.min.js",
+        path: path.join(__dirname, "/dist"),
+        libraryTarget: 'amd',
+        umdNamedDefine: true,
+        library: 'Example'
     },
-
     module: {
         loaders: [
             {test: /\.js?$/, exclude: /node_modules/, loader: 'babel?cacheDirectory'}
@@ -44,5 +43,12 @@ module.exports = {
     devServer: {
         contentBase: './tmp',
         historyApiFallback: true
+    },
+    eslint:{
+        configFile:"./.eslintrc",
+        emitError:true,
+        failOnError:true,
+        failOnWarning:false,
+        formatter:require("eslint-friendly-formatter")
     }
 };

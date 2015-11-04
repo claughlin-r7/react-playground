@@ -8,6 +8,7 @@ import View from 'components/view';
 
 @connectToStores
 class Example extends React.Component {
+    displayName = 'Exampple';
     constructor(props) {
         super(props);
         this.state = {

@@ -5,5 +5,10 @@
 </head>
 <body>
 <div id="content"></div>
+<script src="../node_modules/requirejs/require.js"></script>
+<script>
+    "use strict";
+    require("example.min", function (App) {});
+</script>
 </body>
 </html>
