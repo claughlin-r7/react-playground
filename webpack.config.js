@@ -22,7 +22,8 @@ module.exports = {
         path: path.join(__dirname, "/dist"),
         libraryTarget: 'amd',
         umdNamedDefine: true,
-        library: 'Example'
+        library: 'Example',
+        publicPath: 'http://localhost:8080/'
     },
     module: {
         loaders: [
@@ -30,11 +31,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
-        new HtmlWebpackPlugin({
-            inject: true,
-            template: 'src/index.html'
-        }),
         new webpack.NoErrorsPlugin()
     ],
 
