@@ -2,10 +2,9 @@ import React from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 import DummyStore from 'stores/dummyStore';
 import DummyActions from 'actions/dummyActions';
-import Mn from 'backbone.marionette'
+import Mn from 'backbone.marionette';
 import rComp from 'components/rComp';
 import View from 'components/view';
-import ListenerMixin from 'alt/mixins/ListenerMixin';
 
 @connectToStores
 class Example extends React.Component {
@@ -15,29 +14,12 @@ class Example extends React.Component {
         super(props);
     }
 
-    static getStores(props) {
+    static getStores() {
         return [DummyStore];
     }
 
-    static getPropsFromStores(props) {
+    static getPropsFromStores() {
         return DummyStore.getState();
-    }
-
-    render() {
-        console.log(DummyStore.getState());
-        return (
-            <div>
-                <input type="text" value={this.props.name} onChange={this.onChange}/>
-                <h1>It works: {this.props.name}</h1>
-                <button onClick={this.onMnClicked}>Mn</button>
-                <button onClick={this.onReactClicked}>React</button>
-                <div className="mnView"></div>
-                <View view={this.props.view}/>
-                <button onClick={this.getTestApi}>GET API TEST</button>
-                <button onClick={this.changeText}>change text</button>
-                <div>{this.props.apiData}</div>
-            </div>
-        );
     }
 
     onMnClicked() {
@@ -52,7 +34,7 @@ class Example extends React.Component {
         DummyActions.updateView(view);
     }
 
-    onChange = evt => {
+    onChange = (evt) => {
         DummyActions.updateName(evt.target.value);
     };
 
@@ -61,7 +43,23 @@ class Example extends React.Component {
     }
 
     changeText() {
-        DummyActions.setText("test test");
+        DummyActions.setText('test test');
+    }
+
+    render() {
+        return (
+            <div>
+                <input type='text' value={this.props.name} onChange={this.onChange}/>
+                <h1>It works: {this.props.name}</h1>
+                <button onClick={this.onMnClicked}>Mn</button>
+                <button onClick={this.onReactClicked}>React</button>
+                <div className='mnView'></div>
+                <View view={this.props.view}/>
+                <button onClick={this.getTestApi}>GET API TEST</button>
+                <button onClick={this.changeText}>change text</button>
+                <div>{this.props.apiData}</div>
+            </div>
+        );
     }
 }
 

@@ -9,17 +9,17 @@ module.exports = {
     target: 'web',
     cache: true,
     entry: {
-        main: './src/module'
+        main: './src/js/module'
     },
     resolve: {
         root: srcPath,
         extensions: ['', '.js'],
-        modulesDirectories: ['node_modules', 'src']
+        modulesDirectories: ['node_modules', 'src/js']
     },
     output: {
         chunkFilename:"[chunkhash].example.min.js",
         filename: "example.min.js",
-        path: path.join(__dirname, "/dist"),
+        path: path.join(__dirname, "/dist/js"),
         libraryTarget: 'amd',
         umdNamedDefine: true,
         library: 'Example',
@@ -27,7 +27,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.js?$/, exclude: /node_modules/, loader: 'babel?cacheDirectory'}
+            {test: /\.js?$/, exclude: /node_modules/, loader: 'babel?cacheDirectory'},
+            {test: /\.scss$/, loaders: ["style", "css", "sass"]}
         ]
     },
     plugins: [

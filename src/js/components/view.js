@@ -1,9 +1,9 @@
 import React from 'react';
-import Mn from 'backbone.marionette'
+import Mn from 'backbone.marionette';
 
 class View extends React.Component {
-    element = null;
     mnView = {};
+    element = null;
 
     componentWillUnmount() {
         if (Mn.ItemView.prototype.isPrototypeOf(this.props.view.prototype)) {
@@ -23,7 +23,7 @@ class View extends React.Component {
         } else if (this.props.view !== '') {
             return <this.props.view></this.props.view>;
         } else {
-            return <div>test</div>
+            return <div>test</div>;
         }
     }
 }

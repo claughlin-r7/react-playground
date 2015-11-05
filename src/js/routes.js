@@ -1,4 +1,7 @@
+/*eslint-disable */
 import React from  'react';
+/*eslint-enable */
+
 import {Route} from 'react-router';
 
 import Main from 'components/main';
