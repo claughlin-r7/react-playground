@@ -5,19 +5,14 @@ import DummyActions from 'actions/dummyActions';
 import Mn from 'backbone.marionette'
 import rComp from 'components/rComp';
 import View from 'components/view';
+import ListenerMixin from 'alt/mixins/ListenerMixin';
 
 @connectToStores
 class Example extends React.Component {
     displayName = 'Exampple';
+
     constructor(props) {
         super(props);
-        this.state = {
-            name: props.name,
-            view: ''
-        };
-
-        this.onMnClicked = this.onMnClicked.bind(this);
-        this.onReactClicked = this.onReactClicked.bind(this);
     }
 
     static getStores(props) {
@@ -29,14 +24,18 @@ class Example extends React.Component {
     }
 
     render() {
+        console.log(DummyStore.getState());
         return (
             <div>
-                <input type="text" value={this.state.name} onChange={this.onChange}/>
+                <input type="text" value={this.props.name} onChange={this.onChange}/>
                 <h1>It works: {this.props.name}</h1>
                 <button onClick={this.onMnClicked}>Mn</button>
                 <button onClick={this.onReactClicked}>React</button>
                 <div className="mnView"></div>
-                <View view={this.state.view}/>
+                <View view={this.props.view}/>
+                <button onClick={this.getTestApi}>GET API TEST</button>
+                <button onClick={this.changeText}>change text</button>
+                <div>{this.props.apiData}</div>
             </div>
         );
     }
@@ -45,19 +44,24 @@ class Example extends React.Component {
         var view = Mn.ItemView.extend({
             template: '<h1> this is the Mn view</h1>'
         });
-        this.setState({view: view});
         DummyActions.updateView(view);
     }
 
     onReactClicked() {
         var view = rComp;
-        this.setState({view: view});
         DummyActions.updateView(view);
     }
 
     onChange = evt => {
-        this.setState({name: evt.target.value});
         DummyActions.updateName(evt.target.value);
+    };
+
+    getTestApi() {
+        DummyActions.fetchApiData();
+    }
+
+    changeText() {
+        DummyActions.setText("test test");
     }
 }
 
