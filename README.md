@@ -29,4 +29,4 @@ run [webpack-dev-server](https://webpack.github.io/docs/webpack-dev-server.html)
 grunt dev
 ```
 ### Visit the app
-Open
+Open http://localhost:8081/
