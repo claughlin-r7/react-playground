@@ -11,14 +11,13 @@ module.exports = function (grunt) {
     // Configuration
     grunt.initConfig({
         config: {
-            name: 'r7-cloud-app',
+            name: 'react-playground',
             pkg: pkgjson,
             app: 'src',
             dist: 'dist',
             bower: 'bower_components/**',
             pub: 'public',
-            assets: 'assets',
-            fontFiles: ['node_modules/ui-base-styles/bower_components/roboto-fontface/fonts/**']
+            assets: 'assets'
         },
         pkg: this.config.pkg,
 
@@ -57,7 +56,7 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    '<%= config.dist %>/css/example.dev.min.css': '<%= config.app %>/scss/main.min.scss'
+                    '<%= config.dist %>/css/appSpider.dev.min.css': '<%= config.app %>/scss/main.min.scss'
                 }
             }
         },
@@ -66,13 +65,6 @@ module.exports = function (grunt) {
             assets: {
                 files: [
                     {src : '<%= config.assets %>/*', dest : '<%= config.pub %>/', expand: true, flatten: true}
-                ]
-            },
-            fonts : {
-                files : [
-                    {src : '<%= config.fontFiles %>', dest : '<%= config.pub %>/fonts/', expand: true, flatten: true},
-                    {src : '<%= config.fontFiles %>', dest : '<%= config.pub %>/css/fonts/', expand: true, flatten: true}
-
                 ]
             }
         },
@@ -90,7 +82,7 @@ module.exports = function (grunt) {
 
         shell: {
             devServer: {
-                command: ['node server.js', 'npm run watch'].join('&')
+                command: ['npm test', 'node server.js', 'npm run watch'].join('&')
             },
             webpack: {
                 command: 'npm run build'
