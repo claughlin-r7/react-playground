@@ -5,7 +5,6 @@ import DummyActions from 'actions/dummyActions';
 import Mn from 'backbone.marionette';
 import rComp from 'components/rComp';
 import View from 'components/view';
-import Rism from 'rism';
 
 @connectToStores
 class Example extends React.Component {
@@ -50,7 +49,7 @@ class Example extends React.Component {
         return (
             <div>
                 <input type='text' value={this.props.name} onChange={this.onChange}/>
-                <h1 style={Rism.h1}>It works: {this.props.name}</h1>
+                <h1>It works: {this.props.name}</h1>
                 <button onClick={this.onMnClicked}>Mn</button>
                 <button onClick={this.onReactClicked}>React</button>
                 <div className='mnView'></div>

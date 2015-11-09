@@ -15,12 +15,16 @@ module.exports = function (grunt) {
             pkg: pkgjson,
             app: 'src',
             dist: 'dist',
-            bower: 'bower_components/**'
+            bower: 'bower_components/**',
+            pub: 'public',
+            assets: 'assets',
+            fontFiles: ['node_modules/ui-base-styles/bower_components/roboto-fontface/fonts/**']
         },
         pkg: this.config.pkg,
 
         clean: {
-            all: '<%= config.dist %>'
+            dist: '<%= config.dist %>',
+            pub: '<%= config.pub %>'
         },
 
         bump: {
@@ -43,7 +47,7 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    '<%= config.dist %>/css/example.dev.css': '<%= config.app %>/scss/main.scss'
+                    '<%= config.pub %>/third-party-non-bundled.css': '<%= config.app %>/scss/third-party-non-bundled.scss'
                 }
             },
             min: {
@@ -55,6 +59,21 @@ module.exports = function (grunt) {
                 files: {
                     '<%= config.dist %>/css/example.dev.min.css': '<%= config.app %>/scss/main.min.scss'
                 }
+            }
+        },
+
+        copy: {
+            assets: {
+                files: [
+                    {src : '<%= config.assets %>/*', dest : '<%= config.pub %>/', expand: true, flatten: true}
+                ]
+            },
+            fonts : {
+                files : [
+                    {src : '<%= config.fontFiles %>', dest : '<%= config.pub %>/fonts/', expand: true, flatten: true},
+                    {src : '<%= config.fontFiles %>', dest : '<%= config.pub %>/css/fonts/', expand: true, flatten: true}
+
+                ]
             }
         },
 
@@ -79,9 +98,9 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build', ['checkStyle', 'clean:all', 'sass:min', 'shell:webpack']);
+    grunt.registerTask('build', ['checkStyle', 'clean', 'sass:min', 'shell:webpack']);
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('dev', ['checkStyle', 'clean:all', 'sass:dev', 'shell:devServer']);
+    grunt.registerTask('dev', ['checkStyle', 'clean', 'sass:dev', 'copy', 'shell:devServer']);
     grunt.registerTask('checkStyle', ['jscs', 'eslint']);
 
 };
