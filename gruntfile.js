@@ -82,7 +82,7 @@ module.exports = function (grunt) {
 
         shell: {
             devServer: {
-                command: ['npm test', 'node server.js', 'npm run watch'].join('&')
+                command: ['node server.js', 'npm run watch'].join('&')
             },
             webpack: {
                 command: 'npm run build'
@@ -90,9 +90,9 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build', ['checkStyle', 'clean', 'sass:min', 'shell:webpack']);
+    grunt.registerTask('build', ['clean', 'sass:min', 'shell:webpack']);
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('dev', ['checkStyle', 'clean', 'sass:dev', 'copy', 'shell:devServer']);
+    grunt.registerTask('dev', ['clean', 'sass:dev', 'copy', 'shell:devServer']);
     grunt.registerTask('checkStyle', ['jscs', 'eslint']);
 
 };
